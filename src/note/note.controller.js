@@ -1,5 +1,7 @@
 const Note = require('./note.model')
 
+
+
 const addNote =  async (req, res) =>{
     try{
         const note = await Note.create(req.body);
