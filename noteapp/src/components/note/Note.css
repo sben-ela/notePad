@@ -1,0 +1,60 @@
+
+.note{
+    position: absolute;
+    top: 15vh;
+    left: 25vw;
+    width: 40vw;
+    height: 70vh;
+    background-image: none;
+    background-color: transparent;
+    /* border: 5px solid rgb(4, 49, 81); */
+}
+
+@media screen and (max-width: 1000px) {
+    .note{
+        top: 50vh;
+        width: 80vw;
+        left: 10vw;
+    }
+}
+
+.note-title{
+    font-size: x-large; 
+    font-family: "Poetsen One", sans-serif;
+    color: rgb(141, 81, 66); 
+    width: 100%;
+    height: 10vh;
+    border: none;
+    padding: 10px 20px;
+    display: flex;
+    text-align: center;
+    /* border: 2px solid rgb(65, 28, 28);   */
+}
+.note-title:focus{
+    outline: 2px rgb(94, 86, 86) solid;
+}
+
+.note-content:focus{
+    outline: none;
+}
+
+.note-content{
+    font-family: "Poetsen One", sans-serif;
+
+    font-size: 15px;
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 60vh;
+    bottom: 0;
+    overflow: auto;
+    color: rgb(218, 142, 142);
+    line-height: 1.7;
+    background-image: linear-gradient(var(--lines) 0.05em, transparent 0.05em);
+    background: repeating-linear-gradient(transparent, transparent 31px, #3a424e 31px, #313743 32px);
+    line-height: 32px;
+    font-size: 22px;
+    border: none;  
+
+}
+
