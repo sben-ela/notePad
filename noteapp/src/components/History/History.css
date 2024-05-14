@@ -1,0 +1,49 @@
+.history{
+    position: absolute;
+    display: block;
+    top: 10vh;
+    width: 20vw;
+    height: 80vh;
+
+}
+
+.notes-list{
+    position: absolute;
+    width: inherit;
+    height: inherit;
+    color: wheat;
+    /* border: 2px solid burlywood; */
+}
+
+li{
+
+    padding-left: 15px;
+    padding-top: 15px;
+    font-family: "Poetsen One", sans-serif;
+    width: inherit;
+    height: 5vh;
+    border-radius: 10px;
+}
+
+li:hover{
+    background-color: rgb(37, 42, 64);
+}
+
+
+
+.selected{
+    background-color: rgb(37, 42, 64);
+}
+
+@media screen and (max-width : 1000px){
+        .history{
+            top: 10vh;
+            height: 30vh;
+            width: 80vw;
+            left: 15vw;
+            display: flex;
+            overflow-y: auto;
+            overflow-x: hidden; 
+
+        }
+}

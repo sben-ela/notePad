@@ -12,6 +12,8 @@
 @media screen and (max-width: 1000px) {
     .input{
         left: 30%;
+        top: 140vh;
+        height: 30vh;
     }
 }
 
@@ -47,6 +49,7 @@
     background-color: transparent;
     color: rgb(185, 164, 206);
     font-family: "Poetsen One", sans-serif;
+
 }
 
 
