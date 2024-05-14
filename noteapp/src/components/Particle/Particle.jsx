@@ -1,21 +1,30 @@
 import { useCallback, useEffect, useState } from "react";
 import Particles, { initParticlesEngine } from "@tsparticles/react";
-import { loadFull } from "tsparticles"; // if you are going to use `loadFull`, install the "tsparticles" package too.
+import { loadFull } from "tsparticles";
 
 const Particle = () => {
-    const [ init, setInit ] = useState(false);
+
+    const [load, setload] = useState(false);
+    const [resize, setResize] = useState(window.innerWidth);
+
 
     useEffect(() => {
         initParticlesEngine(async (engine) => {
             await loadFull(engine);
-        }).then(() => {
-            setInit(true);
-        });
+        })
+        .then(() => {
+            setload(true);
+        })
     }, []);
+
+    addEventListener("resize", (event) => {
+        setResize(window.innerWidth);
+    });
+
 
     return (
         <div className="particles">
-            <Particles
+            {load && <Particles
             options={{
                 interactivity : {
                     events : {
@@ -39,7 +48,7 @@ const Particle = () => {
                         value : {min : 1, max : 2}
                     },
                     number : {
-                        value : 200,
+                        value : (resize / 10),
                     },
                     move : {
                         enable : true,
@@ -48,7 +57,7 @@ const Particle = () => {
     
                 }
             }}
-        />
+        />}
         </div>
     )
 };

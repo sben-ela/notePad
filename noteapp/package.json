@@ -13,7 +13,6 @@
     "@tsparticles/react": "^3.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-particles": "^2.12.2",
     "react-router-dom": "^6.23.1",
     "react-tsparticles": "^2.12.2",
     "tsparticles": "^3.4.0",

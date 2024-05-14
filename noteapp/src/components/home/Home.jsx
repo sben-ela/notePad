@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom'
 import './Home.css'
 import Auth from '../auth/Auth'
 import Note from '../note/Note'
@@ -7,7 +6,7 @@ import Particle from '../Particle/Particle'
 
 export default function Home(){
     return (
-        <div className="home">
+        <div className="container">
             <Particle></Particle>
             <Auth></Auth>
             <Note></Note>
