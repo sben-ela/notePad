@@ -7,30 +7,36 @@ export default function Auth(){
     const [emailValue, SetEmailValue] = useState('');
     const [passwordValue, SetPasswordValue] = useState('');
 
-
     const emailHandler = (event) =>{
         SetEmailValue(event.target.value)
     }
     const passwordHandler = (event) =>{
         SetPasswordValue(event.target.value)
     }
-    const authHandler = async () =>{
-        try{
-        const response = await fetch('localhost:5500/register', {
-            method: 'Post',
-            body: JSON.stringify({ email: emailValue, password: passwordValue }),
-        });
-        if (response.ok) {
-            alert('Registration successful');
-        } else {
-            alert('Registration failed');
-        }}
-        catch(error){
-            console.log(error);
+    const authHandler = async (mission) => {
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            credentials: 'include',
+            body: JSON.stringify({
+                email: emailValue,
+                password: passwordValue,
+            })
+        };
+
+        try {
+            const response = await fetch(`http://localhost:5500/${mission}`, requestOptions);
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            const data = await response.json();
+        } catch (error) {
+            console.error('There was an error with the fetch operation:', error);
         }
-    }
+    };
+
     return (
-        <div className="input">
+        !isLogin && <div className="input">
             <input
                 type="text"
                 className="email"
@@ -43,8 +49,8 @@ export default function Auth(){
                 placeholder="password"
                 onChange={passwordHandler}
             ></input>
-            <button className="auth-button" onClick={authHandler}> Login </button>
-            <button className="auth-button" > Register </button>
+            <button className="auth-button" onClick={()=>{authHandler('login')}}> Login </button>
+            <button className="auth-button" onClick={()=>{authHandler('register')}}> Register </button>
 
         </div>
     )

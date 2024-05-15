@@ -1,12 +1,12 @@
 .input{
     position: absolute;
-    width: 250px;
+    width: 20%;
     height: 10vh;
     top: 10vh;
     right: 5vw;
     background-image: none;
-    display: grid;
-    place-items: center;
+    /* display: grid; */
+    /* place-items: center; */
 }
 
 @media screen and (max-width: 1000px) {
@@ -39,16 +39,23 @@
 }
 
 .auth-button{
-    width: 100px;
-    height: 4vh;
+    width: 50%;
+    height: 5vh;
+    right: 50%;
+    transform: translate(50%);
     border: 2px solid rgb(4, 49, 81);
     margin-top: 12px;
     border-radius: 5px;
-    display: block;
+    padding: 1vh 3.4vw;
+    display: flex;
+    flex-direction: row;
     background-image: none;
     background-color: transparent;
     color: rgb(185, 164, 206);
     font-family: "Poetsen One", sans-serif;
+    cursor: pointer;
+    font-size: large;
+
 
 }
 
@@ -56,5 +63,4 @@
 .auth-button:hover {
     border: 2px solid rgb(119, 162, 192);
     color: rgb(119, 162, 192);
-    width: 150px;
 }

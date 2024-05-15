@@ -1,11 +1,15 @@
 const cookieParser = require('cookie-parser');
 const express = require('express')
 const mongoose = require('mongoose');
-// const Reservation = require('./src/reservation/reservation.model');
-require('dotenv').config();
+const cors = require('cors');
 const app = express();
+require('dotenv').config();
 
-// middllware
+const corsOptions = {
+    origin: 'http://localhost:5173', 
+    credentials: true
+};
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(cookieParser())
 
@@ -22,21 +26,7 @@ mongoose.connect(process.env.DATABASE_URL)
         })
 
 
-// app.get('/set-cookie', (req, res) => {
-//   res.cookie('userId', 'coockie   2', { maxAge: 30000, httpOnly: true }); // Set a cookie with options
-//   res.send('Cookie has been set');
-// });
 
-// const checkAuthentication = (req, res, next) =>{
-//     if (!req.cookies.userId){
-//         res.status(4901).send(401)("unauthorized");
-//     }
-//     next();
-// }
-
-// app.get('/notes', checkAuthentication, (req, res) =>{
-//     res.send("NOTES");
-// })
 
 app.listen(process.env.PORT, () => {
     console.log("Server is runing on port ", process.env.PORT);

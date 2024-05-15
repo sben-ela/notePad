@@ -22,7 +22,7 @@ const getNotes =  async (req, res) =>{
         const notes = await Note.find({userId : getUserId(req.cookies.token)});
         console.log("notes : ", notes)
         
-        res.status(200).send(notes);
+        res.status(200).send(["fetch requests ensures that cookies and other credentials", "fetch requests ensures that cookies and other credentials"]);
     }catch(error){
         res.status(500).send(error.message);
     }
