@@ -6,7 +6,6 @@ import './Auth.css'
 export default function Auth(){
     const [emailValue, SetEmailValue] = useState('');
     const [passwordValue, SetPasswordValue] = useState('');
-    const [userNameValue, SetuserNameValue] = useState('');
 
 
     const emailHandler = (event) =>{
@@ -15,9 +14,21 @@ export default function Auth(){
     const passwordHandler = (event) =>{
         SetPasswordValue(event.target.value)
     }
-    const userNameHandler = (event) =>{
-        SetuserNameValue(event.target.value);
-    } 
+    const authHandler = async () =>{
+        try{
+        const response = await fetch('localhost:5500/register', {
+            method: 'Post',
+            body: JSON.stringify({ email: emailValue, password: passwordValue }),
+        });
+        if (response.ok) {
+            alert('Registration successful');
+        } else {
+            alert('Registration failed');
+        }}
+        catch(error){
+            console.log(error);
+        }
+    }
     return (
         <div className="input">
             <input
@@ -32,8 +43,8 @@ export default function Auth(){
                 placeholder="password"
                 onChange={passwordHandler}
             ></input>
-            <button className="auth-button"> Login </button>
-            <button className="auth-button"> Register </button>
+            <button className="auth-button" onClick={authHandler}> Login </button>
+            <button className="auth-button" > Register </button>
 
         </div>
     )
