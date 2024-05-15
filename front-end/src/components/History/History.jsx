@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './History.css'
 
 
@@ -14,6 +14,18 @@ const Note = ({title, selected, click}) =>{
 
 export default function History(){
     const [selectedNote, setSelected] = useState(null);
+    const [notes, setNotes] = useState(null);
+
+    useEffect(() => {
+        fetch('localhost:5500/get-notes')
+        .then((res)=>{
+            return (res.json())
+        })
+        .then((data) =>{
+            console.log(data);
+            setNotes(data);
+        })
+    }, [])
 
 
     return(
