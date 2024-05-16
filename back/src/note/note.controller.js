@@ -12,8 +12,12 @@ const getUserId = (token) =>{
 }
 
 const   addNote =  async (req, res) =>{
-    const note = await Note.create({...(req.body), userId : getUserId(req.cookies.token)});
-    res.status(201).send(note);
+    try{
+        const note = await Note.create({...(req.body), userId : getUserId(req.cookies.token)});
+        res.status(201).send(note);
+    } catch(error){
+        res.status(409).send({message : "invalid title"});
+    }
 }
 
 
@@ -38,6 +42,8 @@ const deleteNote = async (req, res) =>{
         res.send(error.message);
     }
 }
+
+
 const deleteAllNotes = async (req, res) =>{
     try{
         
@@ -50,4 +56,41 @@ const deleteAllNotes = async (req, res) =>{
     }
 }
 
-module.exports = {addNote, getNotes, deleteNote, deleteAllNotes};
+const getTitles = async (req, res) =>{
+    try{
+        const notes = await Note.find({userId : getUserId(req.cookies.token)});
+        const titlesArray = notes.map(note => note.title);
+        res.send(titlesArray);
+    }
+    catch(error){
+        res.status(500).send(error.message);
+    }
+}
+
+const getOneNote  = async(req, res) => {
+    try{
+        const note = await Note.findOne({userId : getUserId(req.cookies.token), title : req.params.title});
+        console.log(note)
+        res.send(note)
+    }
+    catch(error){
+        res.send(error.message);
+    }
+}
+
+
+const updateNote = async (req, res)=>{
+    try{
+        const filter = {title : req.body.title};
+        const update = {...(req.body), userId : getUserId(req.cookies.token)};
+        const options = {new : true};
+        const note = await Note.findOneAndUpdate(filter, update, options);
+        console.log(note)
+        res.send(note);
+    }
+    catch(error){
+        console.log(error.message);
+    }
+}
+
+module.exports = {addNote, getNotes, deleteNote, deleteAllNotes, getTitles, getOneNote, updateNote};

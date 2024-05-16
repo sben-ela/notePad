@@ -77,9 +77,38 @@
     font-size: x-large;
     cursor: pointer;
 }
+.clear-button, .delete-button{
+    width: 20%;
+    position:absolute;
+    display: flex;
+    justify-content: center;
+    border: 4px solid rgb(4, 49, 81);
+    border-radius: 5px;
+    background-image: none;
+    background-color: transparent;
+    color: rgb(185, 164, 206);
+    font-family: "Poetsen One", sans-serif;
+    font-size: x-large;
+    cursor: pointer;
+    bottom: -8vh;
+}
 
+.clear-button{
+    right: 5%;
+}
+
+.delete-button{
+    left: 5%;
+}
 .save-button:hover {
     border: 2px solid rgb(119, 162, 192);
     color: rgb(119, 162, 192);
     width: 50%;
+}
+
+.error{
+    width: 50vw;
+    height: 5vh;
+    font-size: xx-large;
+    color: rgb(207, 23, 23);
 }

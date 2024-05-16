@@ -16,7 +16,7 @@ const register = async (req, res) =>{
             const hashedPassword = await bcrypt.hash(password, 10);
             const user = await User.create({email, password : hashedPassword});
             console.log("register successfulll")
-            // res.send(user);
+            res.send(user);
         }
     } catch(error){
         console.log(error.message);
@@ -48,6 +48,15 @@ const login = async (req, res) =>{
     }
 };
 
+const checkAuthenticated = async (req, res)=>{
+    try{
+        console.log("here")
+        jwt.verify(req.cookies.token, process.env.JWT_SECRET_KEY);
+        res.status(200).send();
+      }
+      catch(error){
+        res.status(403).send();
+      }
+}
 
-
-module.exports = {register, login};
+module.exports = {register, login, checkAuthenticated};

@@ -1,6 +1,6 @@
 const express = require('express');
 const jwt = require('jsonwebtoken');
-const {addNote, getNotes, deleteNote, deleteAllNotes} = require('./note.controller');
+const {addNote, getNotes, deleteNote, deleteAllNotes, getTitles, getOneNote, updateNote} = require('./note.controller');
 require('dotenv').config();
 const router = new express.Router();
 
@@ -17,8 +17,13 @@ router.use((req, res, next) => {
 
 
 router.post('/add-note', addNote);
+router.put('/update-note', updateNote);
+
 router.delete('/delete-note', deleteNote);
 router.get('/get-notes', getNotes);
+router.get('/get-one-note/:title', getOneNote);
+router.get('/get-titles', getTitles);
+
 router.delete('/delete-allnotes', deleteAllNotes);
 
 

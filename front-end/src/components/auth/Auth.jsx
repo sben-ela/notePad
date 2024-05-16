@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import './Auth.css'
 
 
@@ -6,7 +6,7 @@ import './Auth.css'
 export default function Auth(){
     const [emailValue, SetEmailValue] = useState('');
     const [passwordValue, SetPasswordValue] = useState('');
-
+    const [isAuthenticated, setisAuthenticated] = useState(false);
     const emailHandler = (event) =>{
         SetEmailValue(event.target.value)
     }
@@ -34,9 +34,8 @@ export default function Auth(){
             console.error('There was an error with the fetch operation:', error);
         }
     };
-
     return (
-        !isLogin && <div className="input">
+        !isAuthenticated && <div className="input">
             <input
                 type="text"
                 className="email"

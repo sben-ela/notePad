@@ -12,37 +12,35 @@ const Note = ({title, selected, click}) =>{
 };
 
 
-export default function History(){
-    const [selectedNote, setSelected] = useState(null);
-    const [notes, setNotes] = useState(["no Notes"]);
+export default function History({setSelected, selectedNote}){
+    const [titles, setTitles] = useState(["no Notes"]);
 
     useEffect( () => {
-        const fetchNotes = async ()=>{
+        const fetchNotesTitles = async ()=>{
             const requestOptions = {
                 method: 'GET',
                 credentials: 'include',
             };
     
             try {
-                const response = await fetch(`http://localhost:5500/get-notes`, requestOptions);
+                const response = await fetch(`http://localhost:5500/get-titles`, requestOptions);
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
                 const data = await response.json();
-                setNotes(data)
-                console.log(data)
+                setTitles(data)
             } catch (error) {
-                console.error('There was an error with the fetch operation:', error);
+                console.log('There was an error with the fetch operation:', error);
             }
         }
-        fetchNotes()
+        fetchNotesTitles()
     }, [])
 
 
     return(
         <div className="history">
             <ul className='notes-list'>
-                {notes.map((note, index )=> <Note key={note} title={note} selected={selectedNote === index} click={() => setSelected(index)}></Note>)}
+                {titles.map((title)=> <Note key={title} title={title} selected={selectedNote === title} click={() => setSelected(title)}></Note>)}
             </ul>
         </div>
     )
