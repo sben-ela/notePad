@@ -6,12 +6,18 @@ import './Auth.css'
 export default function Auth(){
     const [emailValue, SetEmailValue] = useState('');
     const [passwordValue, SetPasswordValue] = useState('');
-    const [isAuthenticated, setisAuthenticated] = useState(false);
+    const [error, setError] = useState(false);
+
+
     const emailHandler = (event) =>{
         SetEmailValue(event.target.value)
     }
     const passwordHandler = (event) =>{
         SetPasswordValue(event.target.value)
+    }
+    const showError = (message) =>{
+        setError(message)
+        setTimeout(()=>setError(null), [2000])
     }
     const authHandler = async (mission) => {
         const requestOptions = {
@@ -27,15 +33,17 @@ export default function Auth(){
         try {
             const response = await fetch(`http://localhost:5500/${mission}`, requestOptions);
             if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
+                throw await response.json()
             }
             const data = await response.json();
         } catch (error) {
-            console.error('There was an error with the fetch operation:', error);
+    
+            showError(error.error);
+            console.log(error)
         }
     };
     return (
-        !isAuthenticated && <div className="input">
+        <div className="input">
             <input
                 type="text"
                 className="email"
@@ -50,6 +58,7 @@ export default function Auth(){
             ></input>
             <button className="auth-button" onClick={()=>{authHandler('login')}}> Login </button>
             <button className="auth-button" onClick={()=>{authHandler('register')}}> Register </button>
+            {error && <div className='auth-error'>{error}</div>}
 
         </div>
     )

@@ -35,7 +35,7 @@ export default function Home(){
         <div className="container">
             <Particle></Particle>
             {!isAuthenticated && <Auth></Auth>}
-            <Note selectedNote={selectedNote}></Note>
+            <Note selectedNote={selectedNote} isAuthenticated={isAuthenticated}></Note>
             <History  setSelected={setSelected} selectedNote={selectedNote}></History>
         </div>
     )

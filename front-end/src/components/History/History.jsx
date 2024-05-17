@@ -13,7 +13,7 @@ const Note = ({title, selected, click}) =>{
 
 
 export default function History({setSelected, selectedNote}){
-    const [titles, setTitles] = useState(["no Notes"]);
+    const [titles, setTitles] = useState([]);
 
     useEffect( () => {
         const fetchNotesTitles = async ()=>{
