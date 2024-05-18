@@ -31,3 +31,4 @@ mongoose.connect(process.env.DATABASE_URL)
 app.listen(process.env.PORT, () => {
     console.log("Server is runing on port ", process.env.PORT);
 })
+//https://jsonplaceholder.typicode.com/posts
